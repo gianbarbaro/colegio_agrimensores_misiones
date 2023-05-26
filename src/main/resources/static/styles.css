@@ -1,0 +1,727 @@
+body {
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+header {
+    height: 10.5%;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    transition: all 0.5s ease;
+}
+
+header.active {
+    background: white;
+    height: 6rem;
+}
+
+header.active .main-logo {
+    margin: 0.3% 5%;
+    width: 5rem;
+}
+
+header.active .nav-menu {
+    margin-top: 1%;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.main-logo {
+    width: 12%;
+    margin: 1% 3% 1%;
+    z-index: 1;
+    transition: all 0.5s ease;
+}
+
+.main-logo img {
+    width: 90%;
+}
+
+.barra-menu {
+    width: 10%;
+    cursor: pointer;
+}
+
+.barra-menu img {
+    width: 45%;
+}
+
+.nav-menu {
+    width: 70%;
+    display: flex;
+    list-style: none;
+    margin-right: 6%;
+    transition: .5s;
+}
+
+.nav-menu li {
+    margin-right: 1%;
+}
+
+.navbutton {
+    text-transform: uppercase;
+    border: 0;
+    background: none;
+    width: 9rem; 
+    height: 3rem;
+    border-radius: 20px;
+    transition: all 1s ease;
+    color: black;
+}
+
+.navbutton:hover {
+    background-color: #e2e2e2;
+    transition: ease all .1s;
+    transform: scale(1.1);
+}
+
+#style-contact {
+    background-color: #e2e2e2;
+}
+
+#style-login {
+    background: #7ecb5e;
+    color: white;
+}
+
+.first {
+    background: url(textura\ papel\ con\ fondo.png) no-repeat center center fixed;
+    background-size: cover;
+    padding-top: 14%;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: auto;
+}
+
+.second {
+    background: url(textura\ papel\ 1080px_Mesa\ de\ trabajo\ 1.jpg) no-repeat center center fixed;
+    background-size: cover;
+    margin-top: 5%;
+}
+
+.table {
+    background: white;
+    width: 90%;
+    margin-top: 1%;
+    margin-left: 5%;
+    border-radius: 1rem;
+    box-shadow: 2px 2px 10px 1px gray;
+}
+
+.table-encabezado {
+    background: white; 
+    text-align: center; 
+    width: 90%; 
+    margin-top: 5%;
+    margin-left: 5%;
+    border-radius: 1rem;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    box-shadow: 2px 2px 10px 1px gray;
+}
+
+.table thead {
+    text-align: center;
+}
+
+.table td {
+    text-align: left;
+    padding-left: 10%;
+}
+
+#subtitulo {
+    background-color: #7ecb5e;
+    width: 40%;
+    margin-left: 30%;
+    border-radius: 0.5rem;
+    padding: 0.5%;
+    padding-top: 1%;
+    color: white;
+}
+
+#autoridades-encabezado {
+    background-color: #e5662b;
+    text-align: center;
+    padding: 2%;
+    color: white;
+}
+
+.autoridades-fila1 {
+    display: flex;
+    margin: 5% 18%;
+}
+
+.autoridades-fila2 {
+    display: flex;
+    margin: 5% 7%;
+}
+
+.autoridades-fila3 {
+    display: flex;
+    margin: 5% 28%;
+}
+
+.autoridades-card {
+    width: 100%;
+}
+
+.card-img-top {
+    background-color: #e5662b; 
+    width: 6rem;
+    height: 6rem;
+    border-radius: 3rem;
+    margin-left: 33%;
+}
+
+.card-title, .card-text {
+    text-align: center;
+    font-size: 90%;
+    margin-top: 2%;
+    margin-bottom: 0;
+}
+
+.third {
+    background: url(fondo2.jpg) no-repeat center center fixed;
+    background-size: cover;
+}
+
+.normativas {
+    background-color: #7ecb5e;
+    padding: 1%;
+    padding-bottom: 0;
+    padding-left: 42%;
+    display: flex;
+    margin-bottom: 5%;
+}
+
+.accordion {
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 10%;
+    width: 80%;
+}
+
+.accordion-button, a {
+    color: #7ecb5e;
+    text-decoration: none;
+}
+
+.accordion-item {
+    color: #7ecb5e;
+    margin-top: 3%;
+    box-shadow: 1px 1px 5px 1px gray;
+}
+
+.accordion-body ul {
+    color: gray;
+}
+
+.novedades {
+    display: flex;
+}
+
+.novedad-titulo {
+    text-transform: uppercase;
+    text-align: center;
+    color: #7ecb5e;
+    margin: 1%;
+}
+
+.novedad-texto {
+    text-align: left; 
+    font-size: 90%;
+    background-color: #f5f5f5;
+    margin: 1% 2%;
+    margin-top: 2%;
+    padding: 2%;
+    border-radius: 0.5rem;
+}
+
+.card {
+    width: 80%; 
+    border-radius: 2rem;
+    box-shadow: 1px 1px 5px 1px gray;
+    margin: 0 10% 5%;
+}
+
+.card:hover {
+    box-shadow: 1px 1px 5px 1px rgb(100, 100, 100);
+    transform: translateY(-2%);
+}
+
+.img-news {
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem; 
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    width: 100%; 
+    margin: 0; 
+    height: 12rem;
+    background-color: #e2e2e2;
+}
+
+.btn-news {
+    background-color: #7ecb5e;
+    color: white;
+    padding: 1%;
+    width: 10%;
+    font-size: 85%;
+    margin-left: 44%;
+    border-radius: 0.5rem;
+    text-align: center;
+}
+
+.btn-news:hover {
+    background-color: #6eb351;
+    color: white;
+}
+
+footer {
+    background-color: #7ecb5e;
+    display: flex;
+}
+
+ul, #letra-w{
+    color: white;
+}
+
+.info-contacto {
+    padding: 15% 5%;
+}
+
+.social-media {
+    margin: 5% 5% 0;
+}
+
+form {
+    padding-top: 5%;
+    width: 50%;
+}
+
+.btn {
+    width: 20%;
+    margin-left: 80%;
+}
+
+@media screen and (max-width: 1024px) {
+    .navbutton {
+        font-size: 80%;
+        width: 7rem; 
+        height: 2.5rem;
+    }
+
+    .card-title, .card-text {
+        margin-left: 10%;
+    }
+
+    form {
+        width: 40%;
+    }
+}
+
+@media screen and (max-width: 912px) {
+    .navbutton {
+        font-size: 75%;
+        width: 6rem; 
+        height: 2rem;
+    }
+
+    .card-title, .card-text {
+        font-size: 80%;
+        margin-left: 15%;
+    }
+
+    .btn-news {
+        font-size: 80%;
+    }
+
+    footer {
+        display: block;
+        height: 50rem;
+    }
+
+    form {
+        width: 90%;
+        margin: 0 5%;
+    }
+
+    .info-contacto {
+        padding: 5% 5%;
+    }
+
+}
+
+@media screen and (min-width: 820px) {
+    .barra-menu {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    header.active {
+        height: 5rem;
+    }
+    
+    header.active .main-logo {
+        width: 9%;
+        margin: 0 3% 0;
+    }
+
+    header.active .nav-menu {
+        background: linear-gradient(rgba(255, 255, 255, 0.75),rgba(255, 255, 255, 0.75));
+        top: 7%;
+    }
+
+    .nav-menu {
+        flex-direction: column;
+        align-items: center;
+        margin: 0;
+        padding: 3% 0;
+        background: linear-gradient(rgba(5, 7, 12, 0.5),rgba(5, 7, 12, 0.5));
+        position: fixed;
+        left: 0;
+        top: 10.5%;
+        width: 100%;
+        overflow-y: auto;
+        left: 100%;
+    }
+
+    .nav-menu_show {
+        left: 0;
+    }
+
+    .nav-menu li {
+        margin: 1% 0;
+    }  
+
+    .navbutton {
+        background-color: #e2e2e2;
+        width: 9rem;
+    }
+
+    .navbutton:hover {
+        background-color: none;
+        color: #6eb351;
+        transition: ease all .1s;
+        transform: none;
+    }
+
+    .card-title, .card-text {
+        font-size: 70%;
+        margin-left: 20%;
+    }
+
+    .novedad-titulo {
+        font-size: 100%;
+    }
+    
+    .novedad-texto {
+        font-size: 70%;
+    }
+
+    .btn-news {
+        font-size: 60%;
+    }
+
+}
+
+@media screen and (max-width: 540px) {
+    header.active {
+        height: 4rem;
+    }
+    
+    header.active .main-logo {
+        width: 9%;
+        margin: 0 3% 0;
+    }
+
+    .main-logo {
+        width: 10%;
+    } 
+
+    .navbutton {
+        font-size: 70%;
+        width: 7rem;
+    }
+
+    .table-encabezado h2 {
+        font-size: 100%;
+    }
+
+    #subtitulo h4 {
+        font-size: 90%;
+    }
+
+    .table h5 {
+        font-size: 80%;
+    }
+    
+    .table td {
+        font-size: 70%;
+    }
+
+    .card-img-top { 
+        width: 4rem;
+        height: 4rem;
+        margin-left: 30%;
+    }
+
+    .card-title, .card-text {
+        font-size: 60%;
+        margin-left: 20%;
+    }
+
+    .normativas {
+        padding-left: 37%;
+    }
+
+    .novedades {
+        display: block;
+    }
+
+    .card {
+        width: 80%; 
+        margin: 5% 10%;
+    }
+
+    .btn-news {
+        width: 20%;
+        margin-left: 40%;
+    }
+
+    .img-news {
+        border-top-left-radius: 2rem;
+        border-top-right-radius: 2rem; 
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        width: 100%; 
+        margin: 0; 
+        height: 12rem;
+        background-color: #e2e2e2;
+    }
+
+}
+
+@media screen and (max-width: 420px) {
+    header.active {
+        height: 3rem;
+    }
+
+    header.active .nav-menu{
+        top: 4.5%;
+    }
+
+    .main-logo {
+        width: 9%;
+    } 
+
+    .navbutton {
+        font-size: 50%;
+        width: 5rem;
+        height: 1.5rem;
+    }
+
+    .nav-menu {
+        top: 6.5%;
+    }
+
+    #subtitulo h4 {
+        font-size: 70%;
+    }
+
+    .table h5 {
+        font-size: 60%;
+    }
+    
+    .table td {
+        font-size: 50%;
+    }
+
+    #autoridades-encabezado {
+        font-size: 100%;
+    }
+
+    .autoridades-fila1 {
+        display: block;
+        margin: 7% 25%;
+    }
+    
+    .autoridades-fila2 {
+        display: block;
+        margin: 5% 25%;
+    }
+    
+    .autoridades-fila3 {
+        display: block;
+        margin: 5% 25%;
+    }
+    
+    .autoridades-card {
+        width: 100%;
+    }
+
+    .card-img-top { 
+        width: 6rem;
+        height: 6rem;
+        margin-left: 30%;
+    }
+
+    .card-title, .card-text {
+        font-size: 70%;
+        margin-left: 8%;
+    }
+
+    .normativas {
+        padding-left: 33%;
+    }
+
+    .novedades {
+        display: block;
+    }
+
+    .img-news {
+        border-top-left-radius: 2rem;
+        border-top-right-radius: 2rem; 
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        width: 100%; 
+        margin: 0; 
+        height: 12rem;
+        background-color: #e2e2e2;
+    }
+
+}
+
+@media screen and (max-width: 280px) {
+    header {
+        height: 5.5%;
+        width: 100%;
+    }
+
+    header.active {
+        height: 2.5rem;
+    }
+
+    .main-logo {
+        width: 9%;
+        margin-top: 0;
+    } 
+
+    .navbutton {
+        font-size: 35%;
+        width: 4rem;
+        height: 1rem;
+    }
+
+    .nav-menu {
+        top: 6.5%;
+        width: 100%;
+    }
+
+    .first {
+        padding-top: 15%;
+    }
+
+    .table-encabezado h2 {
+        font-size: 70%;
+    }
+
+    #subtitulo h4 {
+        font-size: 50%;
+    }
+
+    #subtitulo {
+        padding-top: 3%;
+    }
+
+    .table h5 {
+        font-size: 50%;
+    }
+    
+    .table td {
+        font-size: 40%;
+    }   
+
+    #autoridades-encabezado {
+        font-size: 80%;
+    }
+
+    .autoridades-fila1 {
+        display: block;
+        margin: 7% 25%;
+    }
+    
+    .autoridades-fila2 {
+        display: block;
+        margin: 5% 25%;
+    }
+    
+    .autoridades-fila3 {
+        display: block;
+        margin: 5% 25%;
+    }
+    
+    .autoridades-card {
+        width: 100%;
+    }
+
+    .card-img-top { 
+        width: 3rem;
+        height: 3rem;
+        margin-left: 35%
+    }
+
+    .card-title, .card-text {
+        font-size: 50%;
+        margin-left: 5%;
+    }
+
+    .normativas {
+        padding-top: 2%;
+        padding-left: 38%;
+    }
+
+    #letra-w {
+        font-size: 80%;
+    }
+
+    .novedades {
+        display: block;
+    }
+
+    .img-news {
+        border-top-left-radius: 2rem;
+        border-top-right-radius: 2rem; 
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        width: 100%; 
+        margin: 0; 
+        height: 12rem;
+        background-color: #e2e2e2;
+    }
+
+    .info-contacto li {
+        font-size: 60%;
+    }
+
+    .social-media img {
+        width: 8%;
+    }
+
+    form {
+        width: 90%;
+    }
+    
+    .btn {
+        width: 30%;
+        margin-left: 70%;
+    }
+
+}
