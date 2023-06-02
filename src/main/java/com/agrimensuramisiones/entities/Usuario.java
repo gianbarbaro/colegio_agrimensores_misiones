@@ -22,7 +22,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "Users")
-public class User implements Serializable {
+public class Usuario implements Serializable {
     
     @Id
     @GeneratedValue(generator = "uuid")
@@ -98,10 +98,10 @@ public class User implements Serializable {
     @Enumerated(EnumType.STRING)
     private Rol rol;
 
-    public User() {
+    public Usuario() {
     }
 
-    public User(String id, String first_name, String last_name, String addres, Integer dni, Integer cuit, String email, Gender gender, Date birth_date, Integer phone, Date created_at, Date updated_at, Cities city, String password, String matricula, Date subscribe_at, Date unsubscribe_at, Cargo cargo, Photo photo, Boolean active, Rol rol) {
+    public Usuario(String id, String first_name, String last_name, String addres, Integer dni, Integer cuit, String email, Gender gender, Date birth_date, Integer phone, Date created_at, Date updated_at, Cities city, String password, String matricula, Date subscribe_at, Date unsubscribe_at, Cargo cargo, Photo photo, Boolean active, Rol rol) {
         this.id = id;
         this.first_name = first_name;
         this.last_name = last_name;

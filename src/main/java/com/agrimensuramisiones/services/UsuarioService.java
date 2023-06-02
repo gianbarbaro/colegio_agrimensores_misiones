@@ -2,35 +2,45 @@
 package com.agrimensuramisiones.services;
 
 import com.agrimensuramisiones.entities.Photo;
-import com.agrimensuramisiones.entities.User;
+import com.agrimensuramisiones.entities.Usuario;
 import com.agrimensuramisiones.enums.Cargo;
 import com.agrimensuramisiones.enums.Cities;
 import com.agrimensuramisiones.enums.Gender;
 import com.agrimensuramisiones.enums.Rol;
-import com.agrimensuramisiones.repositories.UserRepository;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
+import com.agrimensuramisiones.repositories.UsuarioRepository;
+import org.springframework.security.core.userdetails.User;
 
 @Service
-public class UserService {
+public class UsuarioService {
     
     @Autowired
-    private UserRepository userRepository;
+    private UsuarioRepository userRepository;
     
     @Autowired
     private PhotoService photoService;
     
     @Transactional(rollbackFor = {Exception.class})
-    public User createPartner(String first_name, String last_name, String addres, Integer dni, Integer cuit, Gender gender, String email, Date birth_date, Cities city, Integer phone, String password, String matricula) throws Exception {
+    public Usuario createUser(String first_name, String last_name, String addres, Integer dni, Integer cuit, Gender gender, String email, Date birth_date, Cities city, Integer phone, String password, String repeatedPassword) throws Exception {
         
-        validar(first_name, last_name, addres, dni, cuit, email, birth_date, phone, password);
+        validar(first_name, last_name, addres, dni, cuit, email, birth_date, phone, password, repeatedPassword);
         
-        User user = new User();
+        Usuario user = new Usuario();
         
         user.setFirst_name(first_name);
         user.setLast_name(last_name);
@@ -42,7 +52,7 @@ public class UserService {
         user.setBirth_date(birth_date);
         user.setPhone(phone);
         user.setCity(city);
-        user.setMatricula(matricula);
+        user.setMatricula(null);
         user.setActive(true);
         
         user.setCreated_at(new Date());
@@ -50,27 +60,26 @@ public class UserService {
         user.setSubscribe_at(new Date());
         user.setUnsubscribe_at(null);
         
-        user.setRol(Rol.PARTNER);
+        user.setRol(Rol.ADMIN);
         user.setCargo(null);
         user.setPhoto(null);
         
-        user.setPassword(password);
-//        String encryptedPassword = new BCryptPasswordEncoder().encode(password);
-//        user.setPassword(encryptedPassword);
+        String encryptedPassword = new BCryptPasswordEncoder().encode(password);
+        user.setPassword(encryptedPassword);
 
         return userRepository.save(user);
     }
     
     @Transactional(rollbackFor = {Exception.class})
-    public void modify(MultipartFile archive, String id, String first_name, String last_name, String addres, Integer dni, Integer cuit, Gender gender, String email, Date birth_date, Cities city, Integer phone, String password, String matricula) throws Exception {
+    public void modify(MultipartFile archive, String id, String first_name, String last_name, String addres, Integer dni, Integer cuit, Gender gender, String email, Date birth_date, Cities city, Integer phone, String password, String repeatedPassword, String matricula) throws Exception {
         
-        validar(first_name, last_name, addres, dni, cuit, email, birth_date, phone, password);
+        validar(first_name, last_name, addres, dni, cuit, email, birth_date, phone, password, repeatedPassword);
         
-        Optional<User> respuesta = userRepository.findById(id);
+        Optional<Usuario> respuesta = userRepository.findById(id);
         
         if (respuesta.isPresent()) {
             
-            User user = respuesta.get();
+            Usuario user = respuesta.get();
             
             user.setFirst_name(first_name);
             user.setLast_name(last_name);
@@ -84,6 +93,9 @@ public class UserService {
             user.setCity(city);
             user.setMatricula(matricula);
             user.setUpdated_at(new Date());
+            
+            String encryptedPassword = new BCryptPasswordEncoder().encode(password);
+            user.setPassword(encryptedPassword);
             
             if (archive != null) {
                 String photoId = null;
@@ -103,11 +115,11 @@ public class UserService {
     @Transactional(rollbackFor = {Exception.class})
     public void addAuthority(String id, MultipartFile archive, Cargo cargo) throws Exception {
         
-        Optional<User> respuesta = userRepository.findById(id);
+        Optional<Usuario> respuesta = userRepository.findById(id);
         
         if (respuesta.isPresent()) {
             
-            User user = respuesta.get();
+            Usuario user = respuesta.get();
             
             user.setCargo(cargo);
             user.setRol(Rol.AUTHORITY);
@@ -129,8 +141,8 @@ public class UserService {
     }
     
     @Transactional(readOnly = true)
-    public User findById(String id) throws Exception {
-        Optional<User> respuesta = userRepository.findById(id);
+    public Usuario findById(String id) throws Exception {
+        Optional<Usuario> respuesta = userRepository.findById(id);
         if (respuesta.isPresent()) {
             return respuesta.get();
         } else {
@@ -139,25 +151,25 @@ public class UserService {
     }
     
     @Transactional(readOnly = true)
-    public List<User> userList() {
+    public List<Usuario> userList() {
         return userRepository.findAll();
     }
     
     @Transactional(readOnly = true)
-    public List<User> userPartnerList() {
+    public List<Usuario> userPartnerList() {
         return userRepository.findParteners(Rol.PARTNER);
     }
     
     @Transactional(readOnly = true)
-    public List<User> userAuthorityList() {
+    public List<Usuario> userAuthorityList() {
         return userRepository.findAuthorities(Rol.AUTHORITY);
     }
     
     @Transactional(rollbackFor = Exception.class)
-    public User enable(String id) throws Exception {
-        Optional<User> respuesta = userRepository.findById(id);
+    public Usuario enable(String id) throws Exception {
+        Optional<Usuario> respuesta = userRepository.findById(id);
         if (respuesta.isPresent()) {
-            User user = respuesta.get();
+            Usuario user = respuesta.get();
             user.setActive(true);
             return userRepository.save(user);
         } else {
@@ -166,10 +178,10 @@ public class UserService {
     }
     
     @Transactional(rollbackFor = Exception.class)
-    public User disable(String id) throws Exception {
-        Optional<User> respuesta = userRepository.findById(id);
+    public Usuario disable(String id) throws Exception {
+        Optional<Usuario> respuesta = userRepository.findById(id);
         if (respuesta.isPresent()) {
-            User user = respuesta.get();
+            Usuario user = respuesta.get();
             user.setActive(false);
             return userRepository.save(user);
         } else {
@@ -177,7 +189,33 @@ public class UserService {
         }
     }
     
-    private void validar(String first_name, String last_name, String addres, Integer dni, Integer cuit, String email, Date birth_date, Integer phone, String password) throws Exception {
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+
+        Usuario u = userRepository.findByEmail(email);
+
+//        if (u == null) {
+//            return null;
+//        }
+        if (u != null) {
+            List<GrantedAuthority> permisos = new ArrayList<>();
+
+//            GrantedAuthority p1 = new SimpleGrantedAuthority("ROLE_" + u.getRol().toString());
+            GrantedAuthority p1 = new SimpleGrantedAuthority("ROLE_" + u.getRol());
+            permisos.add(p1);
+
+            ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+
+            HttpSession session = attr.getRequest().getSession(true);
+            session.setAttribute("usersession", u);
+
+            return new User(u.getEmail(), u.getPassword(), permisos);
+        } else {
+            return null;
+        }
+
+    }
+    
+    private void validar(String first_name, String last_name, String addres, Integer dni, Integer cuit, String email, Date birth_date, Integer phone, String password, String repeatedPassword) throws Exception {
         if (first_name == null || first_name.trim().isEmpty()) {
             throw new Exception("Debe ingresar su nombre");
         }
@@ -204,6 +242,9 @@ public class UserService {
         }
         if (password == null || password.trim().isEmpty()) {
             throw new Exception("Debe ingresar una contraseña");
+        }
+        if (!password.equals(repeatedPassword)) {
+            throw new Exception("Debe repetir la misma contraseña");
         }
     }
     

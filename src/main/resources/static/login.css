@@ -3,17 +3,50 @@ body {
     background: #e2e2e2;
 }
 
-form {
+#login {
     padding-top: 5%;
     padding-bottom: 3%;
     width: 25%;
     margin-left: 37%;
 }
 
-.logo img {
+#signup {
+    padding-top: 2%;
+    padding-bottom: 3%;
+    width: 50%;
+    margin-left: 25%;
+}
+
+#login .logo img {
     width: 50%;
     margin-left: 25%;
     margin-bottom: 7%;
+}
+
+#signup .logo img {
+    width: 30%;
+    margin-left: 35%;
+}
+
+#colum1 {
+    width: 48%;
+    margin-right: 4%;
+}
+
+#colum2 {
+    width: 48%;
+}
+
+#colum1 input, #colum2 input {
+    margin-bottom: 5%;
+}
+
+.controls {
+    width: 100%;
+    padding: 2%;
+    border-radius: 4px;
+    margin-bottom: 5.6%;
+    border: none;
 }
 
 .btn {
@@ -26,8 +59,12 @@ form {
     color: white;
 }
 
-h2 {
+h2, p {
     text-transform: uppercase;
+}
+
+p {
+    border-bottom: solid 0.15rem #7ecb5e;
 }
 
 @media screen and (max-width: 820px) {

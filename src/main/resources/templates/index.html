@@ -53,28 +53,21 @@
       </button>
     </div>
 
-    <table class="table table-borderless" id="profesionales">
-      <div class="table-encabezado">
-          <h2>AGRIMENSORES 2023</h2>
-          <div id="subtitulo">
-              <h4>PROFESIONALES ACTIVOS</h4>
-          </div>
+    <div id="donde-estudiar">
+      <div class="d-flex">
+        <h4>CONSULTÁ AHORA DONDE ESTUDIAR AGRIMENSURA</h4>
+        <a href="/donde-estudiar" class="btn-donde-estudiar">Dónde estudiar</a>
       </div>
-      <thead>
-        <tr>
-          <th scope="col"><h5>MATRÍCULA</h5></th>
-          <th scope="col"><h5>AGRIMENSORES 2023</h5></th>
-          <th scope="col"><h5>LOCALIDAD</h5></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr th:each="partner:${partners}" th:if="${partner.active == true}">
-          <td th:text="${partner.matricula}"></td>
-          <td th:text="${partner.last_name + ' ' + partner.first_name}"></td>
-          <td th:text="${partner.city}"></td>
-        </tr>
-      </tbody>
-    </table>
+    </div>
+
+    <div id="profesionales" class="card">
+      <div class="card-body">
+        <h2>AGRIMENSORES 2023</h2>
+        <div class="d-grid gap-2">
+          <a href="/profesionales-activos" class="btn-news"><h4>PROFESIONALES ACTIVOS</h4></a>
+        </div>
+      </div>
+    </div>
 
     <div class="second">
       <h2 id="autoridades-encabezado">AUTORIDADES DEL COLEGIO</h2>
@@ -126,14 +119,7 @@
         <div class="autoridades-card">
           <img src="" class="card-img-top" alt="">
           <div class="card-body">
-            <h5 class="card-title">REVISOR DE CUENTAS TITULAR</h5>
-            <p class="card-text">Agrim. Pablo G. A. <br> Mastropierro <br> Mat. Nº 111</p>
-          </div>
-        </div>
-        <div class="autoridades-card">
-          <img src="" class="card-img-top" alt="">
-          <div class="card-body">
-            <h5 class="card-title">REVISOR DE CUENTAS SUPLENTE</h5>
+            <h5 class="card-title">REVISOR DE CUENTAS</h5>
             <p class="card-text">Ing. Geog. Fernando <br> Luis Taborda <br> Mat. Nº 036</p>
           </div>
         </div>
